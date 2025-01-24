@@ -1,0 +1,1242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>测试报告</title>
+
+       <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src=" https://cdn.staticfile.org/jquery/2.0.0/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/echarts/5.1.2/echarts.min.js"></script>
+    <!--    页面样式-->
+    <style type="text/css">
+        /*标题样式*/
+        .title {
+            width: auto;
+            height: 60px;
+            text-align: center;
+            font: bolder 38px/60px "Microsoft YaHei UI";
+        }
+
+        /*汇总信息样式*/
+        .summary {
+            width: 90%;
+            position: absolute;
+            top: 120px;
+            margin-left: 5%;
+
+        }
+
+        .text-left {
+            font: bolder 20px/30px "Microsoft YaHei UI";
+        }
+
+        .left {
+            width: 50%;
+            float: left;
+
+        }
+
+        .right {
+            width: 50%;
+            float: right;
+
+        }
+
+        .desc {
+            float: left;
+            width: 100%;
+        }
+
+        .list-group-item span {
+            font: normal 16px/38px "Microsoft YaHei UI";
+            padding: 30px;
+
+        }
+
+        .list-group-item {
+            position: relative;
+            display: block;
+            padding: .4rem 1.25rem;
+            background-color: #fff;
+            border: 1px solid rgba(0, 0, 0, .125);
+        }
+
+        /* 执行信息样式   */
+        .test_info {
+            width: 90%;
+            position: absolute;
+            top: 900px;
+            margin-left: 5%;
+
+            color: #28a745 !important;
+        }
+
+        .table td, th {
+            border: solid 2px rgba(9, 122, 51, 0.11) !important;
+            padding: 0;
+            line-height: 40px;
+            text-align: center;
+
+        }
+
+
+        select {
+            border: 0;
+            padding: 0;
+            margin: 0;
+            height: 2em;
+            width: 8em;
+            margin-left: 2em;
+        }
+
+        option {
+            text-align: center;
+            height: 36px;
+            font: none 18px/36px "Microsoft YaHei UI";
+            color: #28a745 !important;
+        }
+
+        .test_log {
+            background: rgba(163, 171, 189, 0.15);
+            width: 100%;
+            height: 50px;
+            border-top: none;
+            border-bottom: none;
+            display: none;
+            text-align: left;
+        }
+
+        .test_log td {
+            text-align: left;
+            height: 30px;
+            margin: 0;
+            padding-left: 3em;
+            padding-right:3em;
+            font: none 18px/24px "Microsoft YaHei UI";
+            color: #9e141a;
+        }
+
+        pre {
+            margin: 0;
+            white-space: pre-wrap;
+            white-space: -moz-pre-wrap;
+            white-space: -o-pre-wrap;
+            word-wrap: break-word;
+            line-height: 22px;
+            font-size: 14px
+        }
+
+        /*    测试图表显示*/
+        .char {
+            width: 90%;
+            position: absolute;
+            top: 450px;
+            margin-left: 5%;
+            color: #28a745 !important;
+        }
+
+    </style>
+
+</head>
+<body>
+
+<!--报告标题-->
+<div class="title text-success">
+    <div class="shadow-lg p-3 mb-5 bg-white rounded">UI自动化测试报告ios</div>
+</div>
+
+<!--汇总信息-->
+<div class="summary">
+    <p class="text-left text-success">测试结果汇总</p>
+    <div class="left">
+        <ul class="list-group">
+            <li class="list-group-item">
+                <button type="button" class="btn btn-success">测试人员</button>
+                <span class="text-dark">uiauto</span>
+            </li>
+            <li class="list-group-item">
+                <button type="button" class="btn btn-success">开始时间</button>
+                <span class="text-dark">2024-05-10 18:19:03</span>
+            </li>
+            <li class="list-group-item">
+                <button type="button" class="btn btn-success">执行时间</button>
+                <span class="text-dark">1564.26 S</span>
+            </li>
+            <li class="list-group-item">
+                <button type="button" class="btn btn-success">用例总数</button>
+                <span class="text-dark">4</span>
+            </li>
+
+
+        </ul>
+    </div>
+    <div class="right">
+        <ul class="list-group">
+
+            <li class="list-group-item">
+                <button type="button" class="btn btn-success">成功用例</button>
+                <span class="text-success">1</span>
+            </li>
+            <li class="list-group-item">
+                <button type="button" class="btn btn-warning">失败用例</button>
+                <span class="text-warning">2</span>
+            </li>
+            <li class="list-group-item">
+                <button type="button" class="btn btn-danger">错误用例</button>
+                <span class="text-danger">1</span>
+            </li>
+            <li class="list-group-item">
+                <button type="button" class="btn btn-secondary">跳过用例</button>
+                <span class="text-secondary">0</span>
+            </li>
+        </ul>
+    </div>
+    <div class="desc">
+        <ul class="list-group">
+            <li class="list-group-item">
+                <button type="button" class="btn btn-success">描述信息</button>
+                <span class="text-secondary">zeusUI自动化测试生成的报告ios</span>
+            </li>
+        </ul>
+    </div>
+
+
+</div>
+
+<!--测试图表-->
+<div class="char">
+    <p class="text-left text-success">图表展示</p>
+    <div id="char2" style="width: 49%;height: 400px;float: left"></div>
+    <div id="char" style="width: 49%;height: 400px ;float: left"></div>
+</div>
+
+<!--详细信息-->
+<div class="test_info">
+
+    <p class="text-left text-success">详细信息</p>
+    <div class="table_data">
+
+        <table class="table">
+            <thead class="bg-success text-light">
+            <tr>
+                <th scope="col" style="width: 5%;padding: 0">编号</th>
+                <th scope="col" style="width: 20%;padding: 0">
+                    <span>测试类</span>
+                    <select id="testClass">
+                        <option>所有</option>
+                        
+                            <option>BindUnbindTest</option>
+                        
+                    </select>
+
+                </th>
+
+                <th scope="col" style="width: 15%;padding: 0">测试方法</th>
+                <th scope="col" style="width: 20%;padding: 0">用例描述</th>
+                <th scope="col" style="width: 15%;padding: 0">执行时间</th>
+                <th scope="col" style="width: 20%;padding: 0">
+
+                    <span>执行结果</span>
+                    <select id="testResult">
+                        <option>所有</option>
+                        <option class="text-success">成功</option>
+                        <option class="text-warning">失败</option>
+                        <option class="text-danger">错误</option>
+                        <option class="text-info">跳过</option>
+                    </select>
+
+                </th>
+                <th scope="col" style="width: 10%;padding: 0">详细信息</th>
+            </tr>
+            </thead>
+            <tbody>
+            
+                <tr>
+                    <td>1</td>
+                    <td class="BindUnbindTest">BindUnbindTest</td>
+                    <td>test_email_bind_and_unbind</td>
+                    <td>邮箱绑定/解绑</td>
+                    <td>4.56e+02s</td>
+                    
+                        <td class="text-warning">失败</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>2024-05-10 18:19:03.237857 AutoUI - test_email_bind_and_unbind - 准备
+2024-05-10 18:21:02.065753 AutoUI - test_email_bind_and_unbind - 结束
+test_email_bind_and_unbind (test_bind_unbind.BindUnbindTest)执行——>【失败Failure】
+Traceback (most recent call last):
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/case.py", line 59, in testPartExecutor
+    yield
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/case.py", line 593, in run
+    self._callTestMethod(testMethod)
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/case.py", line 550, in _callTestMethod
+    method()
+  File "/Users/topjoy/PycharmProjects/daoautoui/test/ios_zeus_demo/test_bind_unbind.py", line 118, in test_email_bind_and_unbind
+    assert_true(success, msg="ios-邮箱解绑")
+  File "/Users/topjoy/Library/Python/3.9/lib/python/site-packages/airtest/utils/logwraper.py", line 131, in wrapper
+    res = f(*args, **kwargs)
+  File "/Users/topjoy/Library/Python/3.9/lib/python/site-packages/airtest/core/assertions.py", line 100, in assert_true
+    assert bool(expr), "expression is not True, message: %s" % msg
+AssertionError: expression is not True, message: ios-邮箱解绑
+================test_email_bind_and_unbind (test_bind_unbind.BindUnbindTest)重运行第1次================
+2024-05-10 18:21:05.075290 AutoUI - test_email_bind_and_unbind - 准备
+2024-05-10 18:22:44.386178 AutoUI - test_email_bind_and_unbind - 结束
+test_email_bind_and_unbind (test_bind_unbind.BindUnbindTest)执行——>【失败Failure】
+Traceback (most recent call last):
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/case.py", line 59, in testPartExecutor
+    yield
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/case.py", line 593, in run
+    self._callTestMethod(testMethod)
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/case.py", line 550, in _callTestMethod
+    method()
+  File "/Users/topjoy/PycharmProjects/daoautoui/test/ios_zeus_demo/test_bind_unbind.py", line 118, in test_email_bind_and_unbind
+    assert_true(success, msg="ios-邮箱解绑")
+  File "/Users/topjoy/Library/Python/3.9/lib/python/site-packages/airtest/utils/logwraper.py", line 131, in wrapper
+    res = f(*args, **kwargs)
+  File "/Users/topjoy/Library/Python/3.9/lib/python/site-packages/airtest/core/assertions.py", line 100, in assert_true
+    assert bool(expr), "expression is not True, message: %s" % msg
+AssertionError: expression is not True, message: ios-邮箱解绑
+================test_email_bind_and_unbind (test_bind_unbind.BindUnbindTest)重运行第2次================
+2024-05-10 18:22:47.393258 AutoUI - test_email_bind_and_unbind - 准备
+2024-05-10 18:24:26.808173 AutoUI - test_email_bind_and_unbind - 结束
+test_email_bind_and_unbind (test_bind_unbind.BindUnbindTest)执行——>【失败Failure】
+Traceback (most recent call last):
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/case.py", line 59, in testPartExecutor
+    yield
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/case.py", line 593, in run
+    self._callTestMethod(testMethod)
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/case.py", line 550, in _callTestMethod
+    method()
+  File "/Users/topjoy/PycharmProjects/daoautoui/test/ios_zeus_demo/test_bind_unbind.py", line 118, in test_email_bind_and_unbind
+    assert_true(success, msg="ios-邮箱解绑")
+  File "/Users/topjoy/Library/Python/3.9/lib/python/site-packages/airtest/utils/logwraper.py", line 131, in wrapper
+    res = f(*args, **kwargs)
+  File "/Users/topjoy/Library/Python/3.9/lib/python/site-packages/airtest/core/assertions.py", line 100, in assert_true
+    assert bool(expr), "expression is not True, message: %s" % msg
+AssertionError: expression is not True, message: ios-邮箱解绑
+================test_email_bind_and_unbind (test_bind_unbind.BindUnbindTest)重运行第3次================
+2024-05-10 18:24:29.811001 AutoUI - test_email_bind_and_unbind - 准备
+2024-05-10 18:26:39.599589 AutoUI - test_email_bind_and_unbind - 结束
+test_email_bind_and_unbind (test_bind_unbind.BindUnbindTest)执行——>【失败】
+</pre>
+                        
+
+                            <pre>Traceback (most recent call last):
+</pre>
+                        
+
+                            <pre>  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/case.py", line 59, in testPartExecutor
+    yield
+</pre>
+                        
+
+                            <pre>  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/case.py", line 593, in run
+    self._callTestMethod(testMethod)
+</pre>
+                        
+
+                            <pre>  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/case.py", line 550, in _callTestMethod
+    method()
+</pre>
+                        
+
+                            <pre>  File "/Users/topjoy/PycharmProjects/daoautoui/test/ios_zeus_demo/test_bind_unbind.py", line 118, in test_email_bind_and_unbind
+    assert_true(success, msg="ios-邮箱解绑")
+</pre>
+                        
+
+                            <pre>  File "/Users/topjoy/Library/Python/3.9/lib/python/site-packages/airtest/utils/logwraper.py", line 131, in wrapper
+    res = f(*args, **kwargs)
+</pre>
+                        
+
+                            <pre>  File "/Users/topjoy/Library/Python/3.9/lib/python/site-packages/airtest/core/assertions.py", line 100, in assert_true
+    assert bool(expr), "expression is not True, message: %s" % msg
+</pre>
+                        
+
+                            <pre>AssertionError: expression is not True, message: ios-邮箱解绑
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>2</td>
+                    <td class="BindUnbindTest">BindUnbindTest</td>
+                    <td>test_facebook_bind_and_unbind</td>
+                    <td>facebook绑定/解绑</td>
+                    <td>1.19e+02s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>2024-05-10 18:26:39.600234 AutoUI - test_facebook_bind_and_unbind - 准备
+2024-05-10 18:28:38.936586 AutoUI - test_facebook_bind_and_unbind - 结束
+test_facebook_bind_and_unbind (test_bind_unbind.BindUnbindTest)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>3</td>
+                    <td class="BindUnbindTest">BindUnbindTest</td>
+                    <td>test_sms_bind_and_unbind</td>
+                    <td>短信绑定/解绑</td>
+                    <td>3.56e+02s</td>
+                    
+                        <td class="text-warning">失败</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>2024-05-10 18:28:38.936707 AutoUI - test_sms_bind_and_unbind - 准备
+2024-05-10 18:30:19.544878 AutoUI - test_sms_bind_and_unbind - 结束
+test_sms_bind_and_unbind (test_bind_unbind.BindUnbindTest)执行——>【失败Failure】
+Traceback (most recent call last):
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/case.py", line 59, in testPartExecutor
+    yield
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/case.py", line 593, in run
+    self._callTestMethod(testMethod)
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/case.py", line 550, in _callTestMethod
+    method()
+  File "/Users/topjoy/PycharmProjects/daoautoui/test/ios_zeus_demo/test_bind_unbind.py", line 102, in test_sms_bind_and_unbind
+    assert_true(success, msg="ios-短信解绑")
+  File "/Users/topjoy/Library/Python/3.9/lib/python/site-packages/airtest/utils/logwraper.py", line 131, in wrapper
+    res = f(*args, **kwargs)
+  File "/Users/topjoy/Library/Python/3.9/lib/python/site-packages/airtest/core/assertions.py", line 100, in assert_true
+    assert bool(expr), "expression is not True, message: %s" % msg
+AssertionError: expression is not True, message: ios-短信解绑
+================test_sms_bind_and_unbind (test_bind_unbind.BindUnbindTest)重运行第1次================
+2024-05-10 18:30:22.550758 AutoUI - test_sms_bind_and_unbind - 准备
+2024-05-10 18:31:52.621243 AutoUI - test_sms_bind_and_unbind - 结束
+test_sms_bind_and_unbind (test_bind_unbind.BindUnbindTest)执行——>【失败Failure】
+Traceback (most recent call last):
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/case.py", line 59, in testPartExecutor
+    yield
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/case.py", line 593, in run
+    self._callTestMethod(testMethod)
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/case.py", line 550, in _callTestMethod
+    method()
+  File "/Users/topjoy/PycharmProjects/daoautoui/test/ios_zeus_demo/test_bind_unbind.py", line 102, in test_sms_bind_and_unbind
+    assert_true(success, msg="ios-短信解绑")
+  File "/Users/topjoy/Library/Python/3.9/lib/python/site-packages/airtest/utils/logwraper.py", line 131, in wrapper
+    res = f(*args, **kwargs)
+  File "/Users/topjoy/Library/Python/3.9/lib/python/site-packages/airtest/core/assertions.py", line 100, in assert_true
+    assert bool(expr), "expression is not True, message: %s" % msg
+AssertionError: expression is not True, message: ios-短信解绑
+================test_sms_bind_and_unbind (test_bind_unbind.BindUnbindTest)重运行第2次================
+2024-05-10 18:31:55.626141 AutoUI - test_sms_bind_and_unbind - 准备
+2024-05-10 18:33:25.620942 AutoUI - test_sms_bind_and_unbind - 结束
+test_sms_bind_and_unbind (test_bind_unbind.BindUnbindTest)执行——>【失败Failure】
+Traceback (most recent call last):
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/case.py", line 59, in testPartExecutor
+    yield
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/case.py", line 593, in run
+    self._callTestMethod(testMethod)
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/case.py", line 550, in _callTestMethod
+    method()
+  File "/Users/topjoy/PycharmProjects/daoautoui/test/ios_zeus_demo/test_bind_unbind.py", line 102, in test_sms_bind_and_unbind
+    assert_true(success, msg="ios-短信解绑")
+  File "/Users/topjoy/Library/Python/3.9/lib/python/site-packages/airtest/utils/logwraper.py", line 131, in wrapper
+    res = f(*args, **kwargs)
+  File "/Users/topjoy/Library/Python/3.9/lib/python/site-packages/airtest/core/assertions.py", line 100, in assert_true
+    assert bool(expr), "expression is not True, message: %s" % msg
+AssertionError: expression is not True, message: ios-短信解绑
+================test_sms_bind_and_unbind (test_bind_unbind.BindUnbindTest)重运行第3次================
+2024-05-10 18:33:28.624082 AutoUI - test_sms_bind_and_unbind - 准备
+2024-05-10 18:34:35.102068 AutoUI - test_sms_bind_and_unbind - 结束
+test_sms_bind_and_unbind (test_bind_unbind.BindUnbindTest)执行——>【失败】
+</pre>
+                        
+
+                            <pre>Traceback (most recent call last):
+</pre>
+                        
+
+                            <pre>  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/case.py", line 59, in testPartExecutor
+    yield
+</pre>
+                        
+
+                            <pre>  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/case.py", line 593, in run
+    self._callTestMethod(testMethod)
+</pre>
+                        
+
+                            <pre>  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/case.py", line 550, in _callTestMethod
+    method()
+</pre>
+                        
+
+                            <pre>  File "/Users/topjoy/PycharmProjects/daoautoui/test/ios_zeus_demo/test_bind_unbind.py", line 99, in test_sms_bind_and_unbind
+    assert_true(success, msg="ios-短信绑定")
+</pre>
+                        
+
+                            <pre>  File "/Users/topjoy/Library/Python/3.9/lib/python/site-packages/airtest/utils/logwraper.py", line 131, in wrapper
+    res = f(*args, **kwargs)
+</pre>
+                        
+
+                            <pre>  File "/Users/topjoy/Library/Python/3.9/lib/python/site-packages/airtest/core/assertions.py", line 100, in assert_true
+    assert bool(expr), "expression is not True, message: %s" % msg
+</pre>
+                        
+
+                            <pre>AssertionError: expression is not True, message: ios-短信绑定
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>4</td>
+                    <td class="BindUnbindTest">BindUnbindTest</td>
+                    <td>test_twitter_bind_and_unbind</td>
+                    <td>twitter绑定/解绑</td>
+                    <td>6.32e+02s</td>
+                    
+                        <td class="text-danger">错误</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>Traceback (most recent call last):
+</pre>
+                        
+
+                            <pre>  File "/Library/Python/3.9/site-packages/urllib3/connection.py", line 159, in _new_conn
+    conn = connection.create_connection(
+</pre>
+                        
+
+                            <pre>  File "/Library/Python/3.9/site-packages/urllib3/util/connection.py", line 84, in create_connection
+    raise err
+</pre>
+                        
+
+                            <pre>  File "/Library/Python/3.9/site-packages/urllib3/util/connection.py", line 74, in create_connection
+    sock.connect(sa)
+</pre>
+                        
+
+                            <pre>TimeoutError: [Errno 60] Operation timed out
+</pre>
+                        
+
+                            <pre>
+During handling of the above exception, another exception occurred:
+
+</pre>
+                        
+
+                            <pre>Traceback (most recent call last):
+</pre>
+                        
+
+                            <pre>  File "/Library/Python/3.9/site-packages/urllib3/connectionpool.py", line 670, in urlopen
+    httplib_response = self._make_request(
+</pre>
+                        
+
+                            <pre>  File "/Library/Python/3.9/site-packages/urllib3/connectionpool.py", line 392, in _make_request
+    conn.request(method, url, **httplib_request_kw)
+</pre>
+                        
+
+                            <pre>  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/client.py", line 1257, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+</pre>
+                        
+
+                            <pre>  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/client.py", line 1303, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+</pre>
+                        
+
+                            <pre>  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/client.py", line 1252, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+</pre>
+                        
+
+                            <pre>  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/client.py", line 1012, in _send_output
+    self.send(msg)
+</pre>
+                        
+
+                            <pre>  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/client.py", line 952, in send
+    self.connect()
+</pre>
+                        
+
+                            <pre>  File "/Library/Python/3.9/site-packages/urllib3/connection.py", line 187, in connect
+    conn = self._new_conn()
+</pre>
+                        
+
+                            <pre>  File "/Library/Python/3.9/site-packages/urllib3/connection.py", line 171, in _new_conn
+    raise NewConnectionError(
+</pre>
+                        
+
+                            <pre>urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x11a507160>: Failed to establish a new connection: [Errno 60] Operation timed out
+</pre>
+                        
+
+                            <pre>
+During handling of the above exception, another exception occurred:
+
+</pre>
+                        
+
+                            <pre>Traceback (most recent call last):
+</pre>
+                        
+
+                            <pre>  File "/Library/Python/3.9/site-packages/requests/adapters.py", line 439, in send
+    resp = conn.urlopen(
+</pre>
+                        
+
+                            <pre>  File "/Library/Python/3.9/site-packages/urllib3/connectionpool.py", line 726, in urlopen
+    retries = retries.increment(
+</pre>
+                        
+
+                            <pre>  File "/Library/Python/3.9/site-packages/urllib3/util/retry.py", line 446, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+</pre>
+                        
+
+                            <pre>urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='169.254.68.74', port=8100): Max retries exceeded with url: /status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x11a507160>: Failed to establish a new connection: [Errno 60] Operation timed out'))
+</pre>
+                        
+
+                            <pre>
+During handling of the above exception, another exception occurred:
+
+</pre>
+                        
+
+                            <pre>Traceback (most recent call last):
+</pre>
+                        
+
+                            <pre>  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/case.py", line 59, in testPartExecutor
+    yield
+</pre>
+                        
+
+                            <pre>  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/case.py", line 589, in run
+    self._callSetUp()
+</pre>
+                        
+
+                            <pre>  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/case.py", line 547, in _callSetUp
+    self.setUp()
+</pre>
+                        
+
+                            <pre>  File "/Users/topjoy/PycharmProjects/daoautoui/test/ios_zeus_demo/test_bind_unbind.py", line 20, in setUp
+    air.stop_dao_ios()
+</pre>
+                        
+
+                            <pre>  File "/Users/topjoy/PycharmProjects/daoautoui/utils/air.py", line 37, in stop_dao_ios
+    stop_app(dao_iod_package_name)
+</pre>
+                        
+
+                            <pre>  File "/Users/topjoy/Library/Python/3.9/lib/python/site-packages/airtest/utils/logwraper.py", line 131, in wrapper
+    res = f(*args, **kwargs)
+</pre>
+                        
+
+                            <pre>  File "/Users/topjoy/Library/Python/3.9/lib/python/site-packages/airtest/core/api.py", line 203, in stop_app
+    G.DEVICE.stop_app(package)
+</pre>
+                        
+
+                            <pre>  File "/Users/topjoy/Library/Python/3.9/lib/python/site-packages/airtest/core/ios/ios.py", line 47, in wrapper
+    return func(self, *args, **kwargs)
+</pre>
+                        
+
+                            <pre>  File "/Users/topjoy/Library/Python/3.9/lib/python/site-packages/airtest/core/ios/ios.py", line 851, in stop_app
+    self.driver.app_stop(bundle_id=bundle_id)
+</pre>
+                        
+
+                            <pre>  File "/Library/Python/3.9/site-packages/wda/__init__.py", line 856, in app_stop
+    self.app_terminate(bundle_id)
+</pre>
+                        
+
+                            <pre>  File "/Library/Python/3.9/site-packages/wda/__init__.py", line 827, in app_terminate
+    return self._session_http.post("/wda/apps/terminate", {
+</pre>
+                        
+
+                            <pre>  File "/Library/Python/3.9/site-packages/wda/utils.py", line 47, in _inner
+    return fn(*args, **kwargs)
+</pre>
+                        
+
+                            <pre>  File "/Library/Python/3.9/site-packages/wda/__init__.py", line 457, in _fetch
+    url = urljoin(self.__wda_url, "session", self.session_id,
+</pre>
+                        
+
+                            <pre>  File "/Library/Python/3.9/site-packages/wda/__init__.py", line 692, in session_id
+    current_sid = self.status()['sessionId']
+</pre>
+                        
+
+                            <pre>  File "/Library/Python/3.9/site-packages/decorator.py", line 232, in fun
+    return caller(func, *(extras + args), **kw)
+</pre>
+                        
+
+                            <pre>  File "/Library/Python/3.9/site-packages/retry/api.py", line 73, in retry_decorator
+    return __retry_internal(partial(f, *args, **kwargs), exceptions, tries, delay, max_delay, backoff, jitter,
+</pre>
+                        
+
+                            <pre>  File "/Library/Python/3.9/site-packages/retry/api.py", line 33, in __retry_internal
+    return f()
+</pre>
+                        
+
+                            <pre>  File "/Library/Python/3.9/site-packages/wda/__init__.py", line 385, in status
+    res = self.http.get('status')
+</pre>
+                        
+
+                            <pre>  File "/Library/Python/3.9/site-packages/wda/utils.py", line 47, in _inner
+    return fn(*args, **kwargs)
+</pre>
+                        
+
+                            <pre>  File "/Library/Python/3.9/site-packages/wda/__init__.py", line 460, in _fetch
+    response = httpdo(url, method, data, timeout)
+</pre>
+                        
+
+                            <pre>  File "/Library/Python/3.9/site-packages/wda/__init__.py", line 130, in httpdo
+    return _unsafe_httpdo(url, method, data, timeout)
+</pre>
+                        
+
+                            <pre>  File "/Library/Python/3.9/site-packages/wda/__init__.py", line 157, in _unsafe_httpdo
+    response = request_session.request(method,
+</pre>
+                        
+
+                            <pre>  File "/Library/Python/3.9/site-packages/requests/sessions.py", line 530, in request
+    resp = self.send(prep, **send_kwargs)
+</pre>
+                        
+
+                            <pre>  File "/Library/Python/3.9/site-packages/requests/sessions.py", line 643, in send
+    r = adapter.send(request, **kwargs)
+</pre>
+                        
+
+                            <pre>  File "/Library/Python/3.9/site-packages/requests/adapters.py", line 516, in send
+    raise ConnectionError(e, request=request)
+</pre>
+                        
+
+                            <pre>requests.exceptions.ConnectionError: HTTPConnectionPool(host='169.254.68.74', port=8100): Max retries exceeded with url: /status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x11a507160>: Failed to establish a new connection: [Errno 60] Operation timed out'))
+</pre>
+                        
+
+                            <pre>2024-05-10 18:34:35.102903 AutoUI - test_twitter_bind_and_unbind - 准备
+test_twitter_bind_and_unbind (test_bind_unbind.BindUnbindTest)执行——>【错误Error】
+Traceback (most recent call last):
+  File "/Library/Python/3.9/site-packages/urllib3/connectionpool.py", line 426, in _make_request
+    six.raise_from(e, None)
+  File "<string>", line 3, in raise_from
+  File "/Library/Python/3.9/site-packages/urllib3/connectionpool.py", line 421, in _make_request
+    httplib_response = conn.getresponse()
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/client.py", line 1349, in getresponse
+    response.begin()
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/client.py", line 316, in begin
+    version, status, reason = self._read_status()
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/client.py", line 277, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/socket.py", line 704, in readinto
+    return self._sock.recv_into(b)
+socket.timeout: timed out
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Library/Python/3.9/site-packages/requests/adapters.py", line 439, in send
+    resp = conn.urlopen(
+  File "/Library/Python/3.9/site-packages/urllib3/connectionpool.py", line 726, in urlopen
+    retries = retries.increment(
+  File "/Library/Python/3.9/site-packages/urllib3/util/retry.py", line 410, in increment
+    raise six.reraise(type(error), error, _stacktrace)
+  File "/Library/Python/3.9/site-packages/urllib3/packages/six.py", line 735, in reraise
+    raise value
+  File "/Library/Python/3.9/site-packages/urllib3/connectionpool.py", line 670, in urlopen
+    httplib_response = self._make_request(
+  File "/Library/Python/3.9/site-packages/urllib3/connectionpool.py", line 428, in _make_request
+    self._raise_timeout(err=e, url=url, timeout_value=read_timeout)
+  File "/Library/Python/3.9/site-packages/urllib3/connectionpool.py", line 335, in _raise_timeout
+    raise ReadTimeoutError(
+urllib3.exceptions.ReadTimeoutError: HTTPConnectionPool(host='169.254.68.74', port=8100): Read timed out. (read timeout=180.0)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/case.py", line 59, in testPartExecutor
+    yield
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/case.py", line 589, in run
+    self._callSetUp()
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/case.py", line 547, in _callSetUp
+    self.setUp()
+  File "/Users/topjoy/PycharmProjects/daoautoui/test/ios_zeus_demo/test_bind_unbind.py", line 23, in setUp
+    poco_ios.find_click("初始化")
+  File "/Users/topjoy/PycharmProjects/daoautoui/utils/poco_ios.py", line 19, in find_click
+    if ios(tmp).exists():
+  File "/Library/Python/3.9/site-packages/poco/proxy.py", line 72, in wrapped
+    return func(proxy, *args, **kwargs)
+  File "/Library/Python/3.9/site-packages/poco/proxy.py", line 774, in exists
+    return self.attr('visible')
+  File "/Library/Python/3.9/site-packages/poco/proxy.py", line 39, in wrapped
+    return func(self, *args, **kwargs)
+  File "/Library/Python/3.9/site-packages/poco/proxy.py", line 734, in attr
+    nodes = self._do_query(multiple=False)
+  File "/Library/Python/3.9/site-packages/poco/proxy.py", line 884, in _do_query
+    self._nodes = self.poco.agent.hierarchy.select(self.query, multiple)
+  File "/Library/Python/3.9/site-packages/poco/freezeui/hierarchy.py", line 90, in select
+    return self.selector.select(query, multiple)
+  File "/Library/Python/3.9/site-packages/poco/sdk/Selector.py", line 77, in select
+    return self.selectImpl(cond, multiple, self.getRoot(), 9999, True, True)
+  File "/Library/Python/3.9/site-packages/poco/sdk/Selector.py", line 71, in getRoot
+    return self.dumper.getRoot()
+  File "/Library/Python/3.9/site-packages/poco/freezeui/hierarchy.py", line 35, in getRoot
+    root = Node(self.dumpHierarchy())
+  File "/Library/Python/3.9/site-packages/poco/drivers/ios/__init__.py", line 54, in dumpHierarchy
+    jsonObj = self.client.driver.source(format='json')
+  File "/Library/Python/3.9/site-packages/wda/__init__.py", line 534, in source
+    return self.http.get('source?format=' + format).value
+  File "/Library/Python/3.9/site-packages/wda/utils.py", line 47, in _inner
+    return fn(*args, **kwargs)
+  File "/Library/Python/3.9/site-packages/wda/__init__.py", line 460, in _fetch
+    response = httpdo(url, method, data, timeout)
+  File "/Library/Python/3.9/site-packages/wda/__init__.py", line 130, in httpdo
+    return _unsafe_httpdo(url, method, data, timeout)
+  File "/Library/Python/3.9/site-packages/wda/__init__.py", line 157, in _unsafe_httpdo
+    response = request_session.request(method,
+  File "/Library/Python/3.9/site-packages/requests/sessions.py", line 530, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/Library/Python/3.9/site-packages/requests/sessions.py", line 643, in send
+    r = adapter.send(request, **kwargs)
+  File "/Library/Python/3.9/site-packages/requests/adapters.py", line 529, in send
+    raise ReadTimeout(e, request=request)
+requests.exceptions.ReadTimeout: HTTPConnectionPool(host='169.254.68.74', port=8100): Read timed out. (read timeout=180.0)
+================test_twitter_bind_and_unbind (test_bind_unbind.BindUnbindTest)重运行第1次================
+2024-05-10 18:37:40.464150 AutoUI - test_twitter_bind_and_unbind - 准备
+test_twitter_bind_and_unbind (test_bind_unbind.BindUnbindTest)执行——>【错误Error】
+Traceback (most recent call last):
+  File "/Library/Python/3.9/site-packages/urllib3/connection.py", line 159, in _new_conn
+    conn = connection.create_connection(
+  File "/Library/Python/3.9/site-packages/urllib3/util/connection.py", line 84, in create_connection
+    raise err
+  File "/Library/Python/3.9/site-packages/urllib3/util/connection.py", line 74, in create_connection
+    sock.connect(sa)
+TimeoutError: [Errno 60] Operation timed out
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Library/Python/3.9/site-packages/urllib3/connectionpool.py", line 670, in urlopen
+    httplib_response = self._make_request(
+  File "/Library/Python/3.9/site-packages/urllib3/connectionpool.py", line 392, in _make_request
+    conn.request(method, url, **httplib_request_kw)
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/client.py", line 1257, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/client.py", line 1303, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/client.py", line 1252, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/client.py", line 1012, in _send_output
+    self.send(msg)
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/client.py", line 952, in send
+    self.connect()
+  File "/Library/Python/3.9/site-packages/urllib3/connection.py", line 187, in connect
+    conn = self._new_conn()
+  File "/Library/Python/3.9/site-packages/urllib3/connection.py", line 171, in _new_conn
+    raise NewConnectionError(
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x11a7e6fa0>: Failed to establish a new connection: [Errno 60] Operation timed out
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Library/Python/3.9/site-packages/requests/adapters.py", line 439, in send
+    resp = conn.urlopen(
+  File "/Library/Python/3.9/site-packages/urllib3/connectionpool.py", line 726, in urlopen
+    retries = retries.increment(
+  File "/Library/Python/3.9/site-packages/urllib3/util/retry.py", line 446, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='169.254.68.74', port=8100): Max retries exceeded with url: /session/1CF95E65-83C6-4E54-8B8A-29C6CA787B88/wda/apps/terminate (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x11a7e6fa0>: Failed to establish a new connection: [Errno 60] Operation timed out'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/case.py", line 59, in testPartExecutor
+    yield
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/case.py", line 589, in run
+    self._callSetUp()
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/case.py", line 547, in _callSetUp
+    self.setUp()
+  File "/Users/topjoy/PycharmProjects/daoautoui/test/ios_zeus_demo/test_bind_unbind.py", line 20, in setUp
+    air.stop_dao_ios()
+  File "/Users/topjoy/PycharmProjects/daoautoui/utils/air.py", line 37, in stop_dao_ios
+    stop_app(dao_iod_package_name)
+  File "/Users/topjoy/Library/Python/3.9/lib/python/site-packages/airtest/utils/logwraper.py", line 131, in wrapper
+    res = f(*args, **kwargs)
+  File "/Users/topjoy/Library/Python/3.9/lib/python/site-packages/airtest/core/api.py", line 203, in stop_app
+    G.DEVICE.stop_app(package)
+  File "/Users/topjoy/Library/Python/3.9/lib/python/site-packages/airtest/core/ios/ios.py", line 47, in wrapper
+    return func(self, *args, **kwargs)
+  File "/Users/topjoy/Library/Python/3.9/lib/python/site-packages/airtest/core/ios/ios.py", line 851, in stop_app
+    self.driver.app_stop(bundle_id=bundle_id)
+  File "/Library/Python/3.9/site-packages/wda/__init__.py", line 856, in app_stop
+    self.app_terminate(bundle_id)
+  File "/Library/Python/3.9/site-packages/wda/__init__.py", line 827, in app_terminate
+    return self._session_http.post("/wda/apps/terminate", {
+  File "/Library/Python/3.9/site-packages/wda/utils.py", line 47, in _inner
+    return fn(*args, **kwargs)
+  File "/Library/Python/3.9/site-packages/wda/__init__.py", line 460, in _fetch
+    response = httpdo(url, method, data, timeout)
+  File "/Library/Python/3.9/site-packages/wda/__init__.py", line 130, in httpdo
+    return _unsafe_httpdo(url, method, data, timeout)
+  File "/Library/Python/3.9/site-packages/wda/__init__.py", line 157, in _unsafe_httpdo
+    response = request_session.request(method,
+  File "/Library/Python/3.9/site-packages/requests/sessions.py", line 530, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/Library/Python/3.9/site-packages/requests/sessions.py", line 643, in send
+    r = adapter.send(request, **kwargs)
+  File "/Library/Python/3.9/site-packages/requests/adapters.py", line 516, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='169.254.68.74', port=8100): Max retries exceeded with url: /session/1CF95E65-83C6-4E54-8B8A-29C6CA787B88/wda/apps/terminate (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x11a7e6fa0>: Failed to establish a new connection: [Errno 60] Operation timed out'))
+================test_twitter_bind_and_unbind (test_bind_unbind.BindUnbindTest)重运行第2次================
+2024-05-10 18:40:10.457055 AutoUI - test_twitter_bind_and_unbind - 准备
+test_twitter_bind_and_unbind (test_bind_unbind.BindUnbindTest)执行——>【错误Error】
+Traceback (most recent call last):
+  File "/Library/Python/3.9/site-packages/urllib3/connection.py", line 159, in _new_conn
+    conn = connection.create_connection(
+  File "/Library/Python/3.9/site-packages/urllib3/util/connection.py", line 84, in create_connection
+    raise err
+  File "/Library/Python/3.9/site-packages/urllib3/util/connection.py", line 74, in create_connection
+    sock.connect(sa)
+TimeoutError: [Errno 60] Operation timed out
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Library/Python/3.9/site-packages/urllib3/connectionpool.py", line 670, in urlopen
+    httplib_response = self._make_request(
+  File "/Library/Python/3.9/site-packages/urllib3/connectionpool.py", line 392, in _make_request
+    conn.request(method, url, **httplib_request_kw)
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/client.py", line 1257, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/client.py", line 1303, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/client.py", line 1252, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/client.py", line 1012, in _send_output
+    self.send(msg)
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/client.py", line 952, in send
+    self.connect()
+  File "/Library/Python/3.9/site-packages/urllib3/connection.py", line 187, in connect
+    conn = self._new_conn()
+  File "/Library/Python/3.9/site-packages/urllib3/connection.py", line 171, in _new_conn
+    raise NewConnectionError(
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x11a507df0>: Failed to establish a new connection: [Errno 60] Operation timed out
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Library/Python/3.9/site-packages/requests/adapters.py", line 439, in send
+    resp = conn.urlopen(
+  File "/Library/Python/3.9/site-packages/urllib3/connectionpool.py", line 726, in urlopen
+    retries = retries.increment(
+  File "/Library/Python/3.9/site-packages/urllib3/util/retry.py", line 446, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='169.254.68.74', port=8100): Max retries exceeded with url: /status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x11a507df0>: Failed to establish a new connection: [Errno 60] Operation timed out'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/case.py", line 59, in testPartExecutor
+    yield
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/case.py", line 589, in run
+    self._callSetUp()
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/case.py", line 547, in _callSetUp
+    self.setUp()
+  File "/Users/topjoy/PycharmProjects/daoautoui/test/ios_zeus_demo/test_bind_unbind.py", line 20, in setUp
+    air.stop_dao_ios()
+  File "/Users/topjoy/PycharmProjects/daoautoui/utils/air.py", line 37, in stop_dao_ios
+    stop_app(dao_iod_package_name)
+  File "/Users/topjoy/Library/Python/3.9/lib/python/site-packages/airtest/utils/logwraper.py", line 131, in wrapper
+    res = f(*args, **kwargs)
+  File "/Users/topjoy/Library/Python/3.9/lib/python/site-packages/airtest/core/api.py", line 203, in stop_app
+    G.DEVICE.stop_app(package)
+  File "/Users/topjoy/Library/Python/3.9/lib/python/site-packages/airtest/core/ios/ios.py", line 47, in wrapper
+    return func(self, *args, **kwargs)
+  File "/Users/topjoy/Library/Python/3.9/lib/python/site-packages/airtest/core/ios/ios.py", line 851, in stop_app
+    self.driver.app_stop(bundle_id=bundle_id)
+  File "/Library/Python/3.9/site-packages/wda/__init__.py", line 856, in app_stop
+    self.app_terminate(bundle_id)
+  File "/Library/Python/3.9/site-packages/wda/__init__.py", line 827, in app_terminate
+    return self._session_http.post("/wda/apps/terminate", {
+  File "/Library/Python/3.9/site-packages/wda/utils.py", line 47, in _inner
+    return fn(*args, **kwargs)
+  File "/Library/Python/3.9/site-packages/wda/__init__.py", line 457, in _fetch
+    url = urljoin(self.__wda_url, "session", self.session_id,
+  File "/Library/Python/3.9/site-packages/wda/__init__.py", line 692, in session_id
+    current_sid = self.status()['sessionId']
+  File "/Library/Python/3.9/site-packages/decorator.py", line 232, in fun
+    return caller(func, *(extras + args), **kw)
+  File "/Library/Python/3.9/site-packages/retry/api.py", line 73, in retry_decorator
+    return __retry_internal(partial(f, *args, **kwargs), exceptions, tries, delay, max_delay, backoff, jitter,
+  File "/Library/Python/3.9/site-packages/retry/api.py", line 33, in __retry_internal
+    return f()
+  File "/Library/Python/3.9/site-packages/wda/__init__.py", line 385, in status
+    res = self.http.get('status')
+  File "/Library/Python/3.9/site-packages/wda/utils.py", line 47, in _inner
+    return fn(*args, **kwargs)
+  File "/Library/Python/3.9/site-packages/wda/__init__.py", line 460, in _fetch
+    response = httpdo(url, method, data, timeout)
+  File "/Library/Python/3.9/site-packages/wda/__init__.py", line 130, in httpdo
+    return _unsafe_httpdo(url, method, data, timeout)
+  File "/Library/Python/3.9/site-packages/wda/__init__.py", line 157, in _unsafe_httpdo
+    response = request_session.request(method,
+  File "/Library/Python/3.9/site-packages/requests/sessions.py", line 530, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/Library/Python/3.9/site-packages/requests/sessions.py", line 643, in send
+    r = adapter.send(request, **kwargs)
+  File "/Library/Python/3.9/site-packages/requests/adapters.py", line 516, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='169.254.68.74', port=8100): Max retries exceeded with url: /status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x11a507df0>: Failed to establish a new connection: [Errno 60] Operation timed out'))
+================test_twitter_bind_and_unbind (test_bind_unbind.BindUnbindTest)重运行第3次================
+2024-05-10 18:42:40.475865 AutoUI - test_twitter_bind_and_unbind - 准备
+test_twitter_bind_and_unbind (test_bind_unbind.BindUnbindTest)执行——>【错误Error】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+
+            </tbody>
+        </table>
+    </div>
+
+    <div style="height: 200px"></div>
+</div>
+
+
+<script>
+    var tbodyTr = $('tbody tr');
+    var testResult = $("#testResult");
+    var testClass = $("#testClass");
+    <!--    用例执行详细信息显示切换-->
+    $(".btn_info").click(function () {
+        $(this).parent().parent().next().toggle();
+
+    });
+    // 当选择用例类之后触发
+    testClass.change(function () {
+        var cls = $(this).val();
+        var res = testResult.val();
+        elementDisplay(cls, res);
+        sort()
+    });
+    testResult.change(function () {
+        var res = $(this).val();
+        var cls = testClass.val();
+        elementDisplay(cls, res);
+        sort()
+    });
+
+    function elementDisplay(cls, res) {
+        // 用例数据的显示
+        if (cls === "所有") {
+            if (res === "所有") {
+                tbodyTr.has('button').show();
+            } else if (res === '成功') {
+                tbodyTr.hide();
+                tbodyTr.has('button').has('.text-success').show()
+
+            } else if (res === '失败') {
+                tbodyTr.hide();
+                tbodyTr.has('button').has('.text-warning').show()
+
+            } else if (res === '错误') {
+                tbodyTr.hide();
+                tbodyTr.has('button').has('.text-danger').show()
+
+            } else if (res === '跳过') {
+                tbodyTr.hide();
+                tbodyTr.has('button').has('.text-info').show()
+            }
+        } else {
+            if (res === "所有") {
+                tbodyTr.hide();
+                tbodyTr.has('button').has('.' + cls + '').show()
+            } else if (res === '成功') {
+                tbodyTr.hide();
+                tbodyTr.has('button').has('.' + cls + '').has('.text-success').show()
+            } else if (res === '失败') {
+                tbodyTr.hide();
+                tbodyTr.has('button').has('.' + cls + '').has('.text-warning').show()
+            } else if (res === '错误') {
+                tbodyTr.hide();
+                tbodyTr.has('button').has('.' + cls + '').has('.text-danger').show()
+            } else if (res === '跳过') {
+                tbodyTr.hide();
+                tbodyTr.has('button').has('.' + cls + '').has('.text-info').show()
+            }
+        }
+    }
+
+    function sort() {
+        //重新排列显示序号
+        // 选择所有可以见的tr
+        var visibleTr = tbodyTr.filter(":visible");
+
+        visibleTr.each(function (index, element) {
+            element.firstElementChild.innerHTML = index + 1;
+
+        })
+
+    }
+
+
+</script>
+
+<script type="text/javascript">
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById('char'));
+    var myChart2 = echarts.init(document.getElementById('char2'));
+    // 指定图表的配置项和数据
+    option = {
+        color: ['#00a10a', '#ddb518', 'rgba(204,46,41,0.73)', '#85898c'],
+        tooltip: {
+            trigger: 'item',
+            formatter: '{a} <br/>{b}: {c} ({d}%)'
+        },
+        legend: {
+            orient: 'vertical',
+            left: 10,
+            data: ['通过', '失败', '错误', '跳过']
+        },
+        series: [
+            {
+                name: '测试结果',
+                type: 'pie',
+                radius: ['50%', '70%'],
+                avoidLabelOverlap: false,
+                label: {
+                    show: false,
+                    position: 'center'
+                },
+                emphasis: {
+                    label: {
+                        show: true,
+                        fontSize: '30',
+                        fontWeight: 'bold'
+                    }
+                },
+                labelLine: {
+                    show: false
+                },
+                data: [
+                    {value: 1, name: '通过'},
+                    {value: 2, name: '失败'},
+                    {value: 1, name: '错误'},
+                    {value: 0, name: '跳过'}
+                ]
+            }
+        ]
+    };
+    option2 = {
+        tooltip: {
+            formatter: '{a} <br/>{b} : {c}%'
+        },
+        toolbox: {
+            feature: {
+                restore: {},
+                saveAsImage: {}
+            }
+        },
+        series: [
+            {
+                name: '测试结果',
+                type: 'gauge',
+                detail: {formatter: '25.00%'},
+                data: [{value: '25.00', name: '用例通过率'}],
+                axisLine: {
+                    lineStyle: {
+                        color: [
+                            [0.2, '#c20000'],
+                            [0.8, '#ddb518'],
+                            [1, '#00a10a']]
+                    }
+                }
+            }
+        ]
+    };
+
+
+    myChart2.setOption(option2);
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
+</script>
+
+
+</body>
+</html>
